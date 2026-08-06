@@ -1,5 +1,14 @@
 ---
-clickhouse:
-  hosts:
-    clickhouse-01:
-      ansible_host: <IP_here>
+all:
+  children:
+    clickhouse:
+      hosts:
+        clickhouse-01:
+          ansible_host: 192.168.10.29
+          ansible_user: kudryashov
+
+    vector:
+      hosts:
+        vector-01:
+          ansible_host: 192.168.10.29
+          ansible_user: kudryashov

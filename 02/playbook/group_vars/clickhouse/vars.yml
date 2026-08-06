@@ -1,6 +1,14 @@
 ---
 clickhouse_version: "22.3.3.44"
+
 clickhouse_packages:
+  - clickhouse-common-static
   - clickhouse-client
   - clickhouse-server
-  - clickhouse-common-static
+
+clickhouse_package_arch:
+  clickhouse-common-static: amd64
+  clickhouse-client: all
+  clickhouse-server: all
+
+clickhouse_download_dir: /tmp/clickhouse
