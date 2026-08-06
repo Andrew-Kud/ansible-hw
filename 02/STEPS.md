@@ -52,6 +52,8 @@ pipx uninstall ansible
 ```
 ansible all -i inventory/prod.yml -m ansible.builtin.ping -k
 ```
+<img width="1395" height="194" alt="2-1" src="https://github.com/user-attachments/assets/e79914ee-2ac2-4a7b-bfec-dfd802ff6beb" />
+
 
 ---
 
@@ -101,6 +103,8 @@ ansible-playbook -i inventory/prod.yml site.yml \
   --ask-pass \
   --ask-become-pass
 ```
+<img width="929" height="381" alt="8-1" src="https://github.com/user-attachments/assets/8e85ad68-e399-45cb-afb2-5a8ed9c63c37" />
+
 
 Проверка diff:
 ```
@@ -111,6 +115,8 @@ ansible-playbook -i inventory/prod.yml site.yml \
   --ask-pass \
   --ask-become-pass
 ```
+<img width="956" height="380" alt="8-2" src="https://github.com/user-attachments/assets/2a3421a4-e395-4155-960e-0d381534c1ea" />
+
 
 Проверка работы сервиса:
 ```
@@ -120,6 +126,8 @@ ansible vector -i inventory/prod.yml -b \
   --ask-pass
   --ask-become-pass
 ```
+<img width="611" height="107" alt="8-3" src="https://github.com/user-attachments/assets/ae3f633d-9f31-40c0-bda4-f21b38e6a7a0" />
+
 
 Проверка на идемпотентность:
 ```
@@ -129,6 +137,8 @@ ansible-playbook -i inventory/prod.yml site.yml \
   --ask-pass \
   --ask-become-pass
 ```
+<img width="947" height="379" alt="8-4" src="https://github.com/user-attachments/assets/5eb7ef44-98b4-4d23-a5f2-e14ce7aef437" />
+
 
 ---
 
