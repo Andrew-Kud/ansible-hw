@@ -1,0 +1,43 @@
+# Ansible
+*.retry
+.cache/
+.ansible/
+ansible.log
+
+# Ansible Vault
+.vault_pass
+.vault_password
+vault-password.txt
+
+# Private keys, certificates and credentials
+*.pem
+*.key
+*.crt
+*.p12
+credentials.yml
+credentials.yaml
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.tox/
+.venv/
+venv/
+
+# Molecule test artifacts, if Molecule is added later
+.molecule/
+molecule/*/.cache/
+molecule/*/__pycache__/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
