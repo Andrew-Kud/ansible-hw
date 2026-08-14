@@ -1,0 +1,36 @@
+---
+- name: Install ClickHouse
+  hosts: clickhouse
+  become: true
+  roles:
+    - role: clickhouse
+      tags:
+        - clickhouse
+
+  tasks:
+    - name: Ensure ClickHouse service is enabled and running
+      ansible.builtin.service:
+        name: clickhouse-server
+        enabled: true
+        state: started
+      tags:
+        - clickhouse
+        - clickhouse_service
+
+- name: Install and configure Vector
+  hosts: vector
+  become: true
+  roles:
+    - role: vector
+      tags:
+        - vector
+        - vector_install
+
+- name: Install and configure LightHouse
+  hosts: lighthouse
+  become: true
+  roles:
+    - role: lighthouse
+      tags:
+        - lighthouse
+        - lighthouse_install
