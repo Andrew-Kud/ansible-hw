@@ -4,3 +4,13 @@
   scm: git
   # or src: git+https://
   version: "1.13"
+
+- name: vector
+  src: https://github.com/Andrew-Kud/vector-role.git
+  scm: git
+  version: "v1.0.0"
+
+- name: lighthouse
+  src: https://github.com/Andrew-Kud/lighthouse-role.git
+  scm: git
+  version: "v1.0.1"
