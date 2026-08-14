@@ -1,0 +1,16 @@
+[Unit]
+Description=Vector
+Documentation=https://vector.dev
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart={{ vector_install_dir }}/bin/vector --config {{ vector_config_file }}
+Restart=on-failure
+RestartSec=5
+User=vector
+Group=vector
+
+[Install]
+WantedBy=multi-user.target

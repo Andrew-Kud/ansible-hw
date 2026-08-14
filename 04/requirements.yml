@@ -1,0 +1,6 @@
+---
+- name: clickhouse
+  src: https://github.com/AlexeySetevoi/ansible-clickhouse.git
+  scm: git
+  # or src: git+https://
+  version: "1.13"
