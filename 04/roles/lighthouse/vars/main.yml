@@ -1,0 +1,5 @@
+---
+# vars file for lighthouse
+# vars имеют высокий приоритет.
+# константы, редко изменяемые - непереопределяемые значения.
+lighthouse_nginx_template: lighthouse-nginx.conf.j2

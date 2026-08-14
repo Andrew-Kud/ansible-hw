@@ -1,0 +1,12 @@
+---
+# defaults file for lighthouse
+# defaults имеют низкий приоритет и предназначены для переопределения
+# настраиваемые значения, переопределяемые переменные через group_vars, invertory, playbooks.
+lighthouse_name: lighthouse
+lighthouse_root: /var/www/lighthouse
+lighthouse_index_url: https://raw.githubusercontent.com/VKCOM/lighthouse/master/index.html
+lighthouse_index_path: "{{ lighthouse_root }}/index.html"
+
+lighthouse_nginx_config_path: /etc/nginx/sites-available/default
+lighthouse_listen_port: 80
+lighthouse_nginx_service_name: nginx
