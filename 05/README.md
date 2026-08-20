@@ -82,6 +82,7 @@ molecule drivers
 ```
 docker --version
 ```
+<img width="706" height="635" alt="1" src="https://github.com/user-attachments/assets/cc635a8c-2ac2-4379-aa3e-fdf2682e6949" />
 
 
 2.
@@ -93,6 +94,7 @@ molecule test -s ubuntu_xenial
 ```
 
 `Запуск test сформировал тестовую последовательность dependency - lint - cleaup - destroy - syntax - create - prepare - converge - idempotence - side_effect - verify - cleanup - destroy. Тст остановился на стадии dependency, потому что устаревшая версия Ansible в учебном контейнере не смогла получить коллекцию community.docker через изменившийся API.`
+<img width="1518" height="1120" alt="1-2" src="https://github.com/user-attachments/assets/b73bca0c-d52c-4054-a40e-24b2525803a3" />
 
 
 3.
@@ -146,3 +148,10 @@ molecule test -s default
 ```
 
 `molecule test -s default успешно прошёл этапы dependency, lint, destroy, syntax и create. Бли собраны и запущены тестовые образы oracle linux:8 и ubuntu:latest. На этапе converge тест остановился при сборе фактов для ubuntu иззв устаревшего контейнера aragast/netology:latest: внутри него /usr/bin/docker является podman-обёрткой, а запуск вложенного Podmn в контейнере запрещён. Поэтому ansible не может подключиться к molecule-инстансу. Ошибка относится к тестовому окружению, а не к роли vector.`
+
+<img width="1030" height="1219" alt="1-7-1" src="https://github.com/user-attachments/assets/fb4e4ec3-9a2f-46f9-ab58-ce4da23ad9b6" />
+
+<img width="998" height="1229" alt="1-7-2" src="https://github.com/user-attachments/assets/cfe3ed8d-ddc8-420e-af3a-5a9644eca35d" />
+
+<img width="1071" height="727" alt="1-7-3" src="https://github.com/user-attachments/assets/e425ceeb-55d9-432b-a9fd-bd75f673d576" />
+
