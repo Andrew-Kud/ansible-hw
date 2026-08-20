@@ -1,0 +1,31 @@
+---
+- name: Destroy
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: Finish lightweight scenario
+      ansible.builtin.debug:
+        msg: "Nothing to destroy"
+
+# ---
+# - name: Destroy
+#   hosts: localhost
+#   connection: local
+#   gather_facts: false
+
+#   tasks:
+#     - name: Remove test container
+#       containers.podman.podman_container:
+#         name: instance
+#         state: absent
+
+#     - name: Clear instance configuration
+#       ansible.builtin.copy:
+#         dest: "{{ molecule_instance_config }}"
+#         mode: "0600"
+#         content: |
+#           # Molecule managed
+
+#           []

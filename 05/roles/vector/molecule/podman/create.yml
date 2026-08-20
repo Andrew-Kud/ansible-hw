@@ -1,0 +1,37 @@
+---
+- name: Create
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: Keep lightweight scenario without test containers
+      ansible.builtin.debug:
+        msg: "No container is required"
+
+# ---
+# - name: Create
+#   hosts: localhost
+#   connection: local
+#   gather_facts: false
+
+#   tasks:
+#     - name: Create test container
+#       containers.podman.podman_container:
+#         name: instance
+#         image: docker.io/library/ubuntu:20.04
+#         state: started
+#         command: sleep infinity
+#       register: podman_container
+
+#     - name: Save instance configuration
+#       ansible.builtin.copy:
+#         dest: "{{ molecule_instance_config }}"
+#         mode: "0600"
+#         content: |
+#           # Molecule managed
+
+#           - instance: instance
+#             address: instance
+#             user: root
+#             connection: containers.podman.podman

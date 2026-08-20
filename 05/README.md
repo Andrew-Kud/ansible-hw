@@ -155,3 +155,70 @@ molecule test -s default
 
 <img width="1071" height="727" alt="1-7-3" src="https://github.com/user-attachments/assets/e425ceeb-55d9-432b-a9fd-bd75f673d576" />
 
+---
+
+### Задание 2:
+
+1.
+```
+sudo chown -R adm1 ./05
+```
+```
+cd /home/adm1/Рабочий стол/HW/ansible-hw/05/roles/vector
+```
+
+
+2.
+```
+molecule init scenario podman
+```
+```
+ls -la molecule/podman
+```
+
+
+3.
+```
+docker run --rm -it --privileged=True \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v "$(pwd)":/opt/vector \
+  -w /opt/vector \
+  aragast/netology:latest \
+  bash
+```
+- с установкой устаревших зависимотей из задания 1.
+
+
+```
+tox
+```
+
+
+4.
+```
+pip3 install molecule-podman
+```
+```
+ansible-galaxy collection install containers.podman
+```
+```
+ansible-galaxy collection list | grep -i podman
+```
+```
+molecule drivers
+```
+```
+cp molecule/default/converge.yml molecule/podman/converge.yml
+```
+```
+cp molecule/default/verify.yml molecule/podman/verify.yml
+```
+```
+cd /workspace/roles/vector
+```
+```
+molecule test -s podman --destroy always
+```
+```
+tox
+```
