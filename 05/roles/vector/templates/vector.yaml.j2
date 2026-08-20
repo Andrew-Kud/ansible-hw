@@ -1,0 +1,19 @@
+---
+data_dir: "{{ vector_data_dir }}"
+
+sources:
+  system_logs:
+    type: file
+    include:
+{% for log_file in vector_log_files %}
+      - {{ log_file }}
+{% endfor %}
+    read_from: beginning
+
+sinks:
+  console:
+    type: console
+    inputs:
+      - system_logs
+    encoding:
+      codec: json

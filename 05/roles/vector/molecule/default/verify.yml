@@ -1,0 +1,113 @@
+---
+- name: Verify Vector
+  hosts: all
+  become: true
+  gather_facts: false
+
+  vars:
+    vector_binary: /opt/vector/bin/vector
+    vector_config: /etc/vector/vector.yaml
+    vector_unit: /etc/systemd/system/vector.service
+    vector_service: vector.service
+    vector_user: vector
+    vector_group: vector
+
+  tasks:
+    - name: Check that Vector binary exists
+      ansible.builtin.stat:
+        path: "{{ vector_binary }}"
+      register: vector_binary_stat
+
+    - name: Assert that Vector binary is installed and executable
+      ansible.builtin.assert:
+        that:
+          - vector_binary_stat.stat.exists
+          - vector_binary_stat.stat.isreg
+          - vector_binary_stat.stat.executable
+        fail_msg: "Vector binary {{ vector_binary }} is absent or not executable"
+        success_msg: "Vector binary is installed and executable"
+
+    - name: Get Vector version
+      ansible.builtin.command:
+        cmd: "{{ vector_binary }} --version"
+      register: vector_version_result
+      changed_when: false
+
+    - name: Assert that Vector command starts successfully
+      ansible.builtin.assert:
+        that:
+          - vector_version_result.rc == 0
+          - vector_version_result.stdout is search('vector')
+        fail_msg: "The Vector binary does not start correctly"
+        success_msg: "Vector binary starts successfully"
+
+    - name: Check that Vector configuration exists
+      ansible.builtin.stat:
+        path: "{{ vector_config }}"
+      register: vector_config_stat
+
+    - name: Assert Vector configuration ownership and permissions
+      ansible.builtin.assert:
+        that:
+          - vector_config_stat.stat.exists
+          - vector_config_stat.stat.isreg
+          - vector_config_stat.stat.pw_name == 'root'
+          - vector_config_stat.stat.gr_name == vector_group
+          - vector_config_stat.stat.mode == '0640'
+        fail_msg: "Vector configuration has an incorrect path, owner, group, or mode"
+        success_msg: "Vector configuration has expected ownership and mode"
+
+    - name: Validate Vector configuration
+      ansible.builtin.command:
+        cmd: "{{ vector_binary }} validate --no-environment {{ vector_config }}"
+      register: vector_validation
+      changed_when: false
+
+    - name: Assert Vector configuration is valid
+      ansible.builtin.assert:
+        that:
+          - vector_validation.rc == 0
+        fail_msg: >-
+          Vector configuration is invalid.
+          stdout={{ vector_validation.stdout }}
+          stderr={{ vector_validation.stderr }}
+        success_msg: "Vector configuration is valid"
+
+    - name: Check that Vector systemd unit exists
+      ansible.builtin.stat:
+        path: "{{ vector_unit }}"
+      register: vector_unit_stat
+
+    - name: Assert Vector systemd unit exists
+      ansible.builtin.assert:
+        that:
+          - vector_unit_stat.stat.exists
+          - vector_unit_stat.stat.isreg
+        fail_msg: "Systemd unit {{ vector_unit }} is absent"
+        success_msg: "Vector systemd unit exists"
+
+    - name: Collect service facts
+      ansible.builtin.service_facts:
+
+    - name: Assert Vector service is present, enabled, and running
+      ansible.builtin.assert:
+        that:
+          - vector_service in ansible_facts.services
+          - ansible_facts.services[vector_service].state == 'running'
+          - ansible_facts.services[vector_service].status in ['enabled', 'static']
+        fail_msg: "Vector service is missing, disabled, or not running"
+        success_msg: "Vector service is enabled and running"
+
+    - name: Check that Vector process is running
+      ansible.builtin.command:
+        cmd: pgrep -x vector
+      register: vector_process
+      changed_when: false
+
+    - name: Assert that the Vector process exists
+      ansible.builtin.assert:
+        that:
+          - vector_process.rc == 0
+          - vector_process.stdout | length > 0
+        fail_msg: "Vector process is not running"
+        success_msg: "Vector process is running"

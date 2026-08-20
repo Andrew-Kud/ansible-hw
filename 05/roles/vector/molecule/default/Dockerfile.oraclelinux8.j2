@@ -1,0 +1,16 @@
+FROM oraclelinux:8
+
+ENV container=docker
+
+RUN dnf -y install \
+      python3 \
+      systemd \
+      systemd-libs \
+      dbus \
+      sudo \
+      ca-certificates \
+    && dnf clean all
+
+STOPSIGNAL SIGRTMIN+3
+
+CMD ["/usr/sbin/init"]

@@ -1,0 +1,26 @@
+---
+- name: Converge Vector on Ubuntu
+  hosts: ubuntu
+  become: true
+  gather_facts: true
+
+  vars:
+    vector_log_files:
+      - /var/log/syslog
+      - /var/log/auth.log
+
+  roles:
+    - role: adm1.vector
+
+- name: Converge Vector on Oracle Linux 8
+  hosts: oraclelinux8
+  become: true
+  gather_facts: true
+
+  vars:
+    vector_log_files:
+      - /var/log/messages
+      - /var/log/secure
+
+  roles:
+    - role: adm1.vector

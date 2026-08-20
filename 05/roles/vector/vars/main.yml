@@ -1,0 +1,7 @@
+---
+# vars file for vector
+# vars имеют высокий приоритет.
+# константы, редко изменяемые - непереопределяемые значения.
+vector_systemd_unit_path: /etc/systemd/system/vector.service
+vector_systemd_unit_template: vector.service.j2
+vector_config_template: vector.yaml.j2
