@@ -185,7 +185,6 @@ nano ./my_own_namespace/yandex_cloud_elk/roles/create_text_file/defaults/main.ym
 nano ./my_own_namespace/yandex_cloud_elk/roles/create_text_file/tasks/main.yml
 ```
 
-10.
 Так просто это не заработало, Ansible ожидает ansible_collection, а значит:
 ```
 mkdir -p collections/ansible_collections/my_own_namespace
@@ -210,6 +209,30 @@ ansible-playbook -i 'localhost,' playbook.yml
 ```
 cat /tmp/example.txt
 ```
+
+12.
+```
+rm -rf 06/ansible/.git
+```
+```
+git commit -m "homework-ansible 6-12"
+```
+```
+git push -u origin main
+```
+```
+git tag -a 1.0.0 -m "homework-ansible 6-12"
+```
+```
+git push origin 1.0.0
+```
+```
+git tag --list
+```
+```
+git show 1.0.0
+```
+
 
 ---
 
