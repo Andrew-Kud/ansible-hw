@@ -112,6 +112,7 @@ echo '{"ANSIBLE_MODULE_ARGS":{"path":"/tmp/test.txt","content":"Hello, Netology!
 ```
 cat /tmp/test.txt
 ```
+<img width="1541" height="166" alt="4" src="https://github.com/user-attachments/assets/0e741099-e986-4b19-a15c-decaf8b75d92" />
 
 
 ---
@@ -147,6 +148,8 @@ ANSIBLE_LIBRARY=./library ansible-playbook playbook.yml
 ```
 cat /tmp/example.txt
 ```
+<img width="1081" height="474" alt="6" src="https://github.com/user-attachments/assets/58a5a3a1-b638-4908-9bb0-b2815f8ecd46" />
+
 
 
 ---
@@ -209,6 +212,8 @@ ansible-playbook -i 'localhost,' playbook.yml
 ```
 cat /tmp/example.txt
 ```
+<img width="1418" height="1351" alt="11" src="https://github.com/user-attachments/assets/5282e09e-ca37-4ee6-88a8-351dc07c5c9c" />
+
 
 12.
 ```
@@ -289,6 +294,8 @@ ansible-galaxy collection build
 ```
 ls
 ```
+<img width="1804" height="144" alt="13" src="https://github.com/user-attachments/assets/041f3812-44d3-417d-bda7-aa808336a764" />
+
 
 14.
 ```
@@ -318,6 +325,8 @@ ansible-galaxy collection install my_own_namespace-yandex_cloud_elk-1.0.0.tar.gz
 ```
 ansible-galaxy collection list | grep yandex_cloud_elk
 ```
+<img width="1255" height="214" alt="15" src="https://github.com/user-attachments/assets/5c4fbe0d-ef28-4bc5-b2ab-a64383f44b5e" />
+
 
 16.
 ```
@@ -332,11 +341,4 @@ ansible-playbook -i 'localhost,' playbook.yml
 ```
 cat /tmp/example.txt
 ```
-
-
----
-
-### Шаг 16:
-
-
----
+<img width="1069" height="495" alt="16" src="https://github.com/user-attachments/assets/273b21ef-4e71-4ac0-a7d7-82c61ada10c7" />
