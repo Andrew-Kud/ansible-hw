@@ -233,10 +233,105 @@ git tag --list
 git show 1.0.0
 ```
 
+Так, столкнулся с ошибко 160000 - из за `Ansible` репозитория.
+Проблема скорее всего в разныз владельцах и правах. Если так, то в Гит отправится Симлинк, а не репозиторий.
+
+```
+cd /home/adm1/Рабочий\ стол/HW/ansible-hw/
+```
+```
+rm -rf 06/ansible/.git
+```
+
+если закомитил но не отправил:
+```
+git reset --mixed HEAD~1
+```
+```
+git rm --cached -f 06/ansible
+```
+
+если уже отправил:
+```
+git rm --cached -f 06/ansible
+```
+
+```
+ls -ld .git .git/objects
+```
+```
+ls -la .git/objects | head
+```
+```
+sudo chown -R "$(id -un)":"$(id -gn)" .git
+```
+```
+git add 06
+```
+```
+git commit -m ....
+```
+```
+git push ...
+```
+
 
 ---
+### Шаг 13-14:
 
-### Шаг 15:
+13.
+```
+cd collections/ansible_collections/my_own_namespace/yandex_cloud_elk
+```
+```
+ansible-galaxy collection build
+```
+```
+ls
+```
+
+14.
+```
+cd /home/adm1/Рабочий\ стол/HW/ansible-hw/06/ansible/
+```
+```
+mkdir ./test_collection
+```
+```
+cp ./playbook.yml ./test_collection/
+```
+```
+mv ./collections/ansible_collections/my_own_namespace/yandex_cloud_elk/my_own_namespace-yandex_cloud_elk-1.0.0.tar.gz ./test_collection/
+```
+
+
+---
+### Шаг 15-16:
+
+15.
+```
+cd ./test_collection
+```
+```
+ansible-galaxy collection install my_own_namespace-yandex_cloud_elk-1.0.0.tar.gz
+```
+```
+ansible-galaxy collection list | grep yandex_cloud_elk
+```
+
+16.
+```
+cd ./test_collection
+```
+```
+rm /tmp/example.txt
+```
+```
+ansible-playbook -i 'localhost,' playbook.yml
+```
+```
+cat /tmp/example.txt
+```
 
 
 ---
